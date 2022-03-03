@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       word: {id:0, word:"hebrews"},
-      numberWordsRated: 0
+      numberWordsRated: 0,
+      words: []
     }
   },
   methods:{
@@ -21,6 +22,7 @@ export default {
       //alert(word.word);
 
       this.word = word;
+      this.words.push(word.word.slice(0, 7));
     },
 
     async submitRating(wordId, rating) {
@@ -46,28 +48,36 @@ export default {
 <template>
 
   <h1>Scripturater</h1>
+  <h5>A random word will be put on the screen for you to rate. Please choose the like, dislike, or neutral faces to rate the word. Once you rate the word, a new word will be shown for you to rate. </h5>
 
-  <h2>{{word.word}}</h2>
+  <h4>Word to rate:</h4>
+  <h2> {{word.word}}</h2>
 
-  <h3>{{numberWordsRated}}</h3>
 
-  <a href="" @click.prevent="submitRating(word.id, 'like')">🙁</a>
-  <a href="" @click.prevent="submitRating(word.id, 'neutral')">😐</a>
-  <a href="" @click.prevent="submitRating(word.id, 'dislike')">🙂</a>
+  <a href="" @click.prevent="submitRating(word.id, 'like'); loadNewWord()">🙁</a>
+  <a href="" @click.prevent="submitRating(word.id, 'neutral'); loadNewWord()">😐</a>
+  <a href="" @click.prevent="submitRating(word.id, 'dislike'); loadNewWord()">🙂</a>
 
-  <br>
-
-  <button @click="loadNewWord">Get Another Word</button>
+  <h3>Number of Words Rated: {{numberWordsRated}}</h3>
+  <h5> Words you have rated:</h5>
+  <p>{{words}}</p>
 
 </template>
 
 <style>
+
+body {
+  font-size: 1.5em;
+  background-color: black;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #e8ebee;
+
   margin-top: 60px;
 }
 
