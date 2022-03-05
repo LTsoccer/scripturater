@@ -46,12 +46,10 @@ export default {
 </script>
 
 <template>
-
   <h1>Scripturater</h1>
-  <h5>A random word will be put on the screen for you to rate. Please choose the like, dislike, or neutral faces to rate the word. Once you rate the word, a new word will be shown for you to rate. </h5>
-
   <h4>Word to rate:</h4>
   <h2> {{word.word}}</h2>
+  
 
 
   <a href="" @click.prevent="submitRating(word.id, 'like'); loadNewWord()">🙁</a>
@@ -62,13 +60,17 @@ export default {
   <h5> Words you have rated:</h5>
   <p>{{words}}</p>
 
+  <h5>A random word will be put on the screen for you to rate.</h5>
+  <h5> Please choose the like, dislike, or neutral faces to rate the word.</h5>
+  <h5> Once you rate the word, a new word will be shown for you to rate.</h5>
+
 </template>
 
 <style>
 
 body {
   font-size: 1.5em;
-  background-color: black;
+  background-color: rgb(24, 2, 63);
 }
 
 #app {
@@ -84,5 +86,7 @@ body {
 a {
   font-size: 8em;
   text-decoration: none;
+  margin: 20px;
 }
+
 </style>
