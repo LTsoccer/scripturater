@@ -158,7 +158,7 @@ router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
 
   if (!rating) {
     // return a 404
-    res.status(404).send("No words with that id in database.");
+    res.status(404).send("No ratings with that id in database.");
   }
 
   ratings[ratingId] = newRating;
@@ -176,7 +176,7 @@ router.delete( '/words/:wordId/ratings/:ratingId', (req, res)=> {
 
   if (!rating) {
     // return a 404
-    res.status(404).send("No rating with that id in database.");
+    res.status(404).send("No ratings with that id in database.");
   }
   ratings = ratings.filter( r => r.id !== ratingId);
 
