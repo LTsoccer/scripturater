@@ -152,8 +152,9 @@ router.post("/words/:id/ratings", function (req, res, next) {
     BODY: {"rating" : "like"}
 */
 router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
-  const ratingId = parseInt(req.params.ratingId);
-  const rating = words[ratingId];
+  const ratingId = req.params.ratingId;
+  const index = ratings.findIndex((r) => r.id == ratingId);
+  const rating = ratings[index];
   const newRating = req.body.rating;
 
   if (!rating) {
@@ -161,7 +162,7 @@ router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
     res.status(404).send("No ratings with that id in database.");
   }
 
-  ratings[ratingId] = newRating;
+  rating.rating = newRating;
   res.send(rating);
 });
 
@@ -171,8 +172,7 @@ router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
 /* delete an existing rating object for a given word
 */
 router.delete( '/words/:wordId/ratings/:ratingId', (req, res)=> {
-  const ratingId = parseInt(req.params.ratingId);
-  const rating = ratings[ratingId];
+  const ratingId = req.params.ratingId;
 
   if (!rating) {
     // return a 404
