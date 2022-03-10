@@ -159,7 +159,7 @@ router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
 
   if (!rating) {
     // return a 404
-    res.status(404).send("No ratings with that id in database.");
+    res.status(404).send("Invalid rating id.");
   }
 
   rating.rating = newRating;
@@ -173,10 +173,11 @@ router.put( '/words/:wordId/ratings/:ratingId', (req, res)=> {
 */
 router.delete( '/words/:wordId/ratings/:ratingId', (req, res)=> {
   const ratingId = req.params.ratingId;
-
+  const index = ratings.findIndex((r) => r.id == ratingId);
+  const rating = ratings[index];
   if (!rating) {
     // return a 404
-    res.status(404).send("No ratings with that id in database.");
+    res.status(404).send("Invalid rating id.");
   }
   ratings = ratings.filter( r => r.id !== ratingId);
 
